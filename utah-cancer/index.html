@@ -139,11 +139,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .cd-terms li{padding:12px 0;border-top:1px solid var(--line);font-size:15px}
 .cd-value{background:var(--blue);color:#d6e3ea;border-radius:var(--r);padding:40px}
 .cd-value .cd-label{color:#a9c0cc}
-.cd-bars{margin-top:22px;display:grid;gap:16px}
-.cd-bar div{height:14px;border-radius:99px;background:rgba(255,255,255,.18);margin-top:8px}
-.cd-bar div i{display:block;height:100%;border-radius:99px;background:#fff}
-.cd-bar p{display:flex;justify-content:space-between;font-size:14px}
-.cd-bar b{color:#fff;font-weight:600}
+.cd-bars{margin-top:28px;display:grid;gap:28px}
+.cd-bar-k{display:block;font-family:Almarai,sans-serif;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#a9c0cc;margin-bottom:6px}
+.cd-bar--fc .cd-bar-k{color:#9fd3c7}
+.cd-bar p{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;font-size:14px;line-height:1.45}
+.cd-bar p b{display:block;color:#fff;font-size:17px;font-weight:600;margin-bottom:2px}
+.cd-bar strong{font-family:'DM Sans',sans-serif;font-size:34px;font-weight:500;letter-spacing:-.02em;line-height:1;color:#fff;white-space:nowrap}
+.cd-bar div{height:14px;border-radius:99px;background:rgba(0,0,0,.22);margin-top:12px}
+.cd-bar div i{display:block;height:100%;border-radius:99px;background:#9fd3c7}
 .cd-value small{display:block;margin-top:20px;font-size:13px;color:#a9c0cc}
 /* cta */
 .cd-cta{text-align:center;padding:104px 0}
@@ -175,7 +178,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .cd-prev{left:14px}.cd-next{right:14px}
 body.cd-lock{overflow:hidden}
 @media (max-width:1000px){.cd-plans{grid-template-columns:1fr;max-width:560px;margin-left:auto;margin-right:auto}.cd-plan--feat{order:-1}.cd-plan .cd-tag{min-height:0}.cd-cats{grid-template-columns:repeat(2,minmax(0,1fr))}.cd-cols,.cd-idaho,.cd-terms{grid-template-columns:1fr}}
-@media (max-width:640px){.cd-wrap{padding:0 16px}.cd-sec{padding:64px 0}.cd-hero{padding:80px 0 64px}.cd-idaho{padding:28px 22px;gap:28px}.cd-videos{grid-template-columns:1fr}.cd-cats{gap:12px}.cd-cat span{padding:12px 12px 14px}.cd-cat b{font-size:16px}.cd-modal{padding:12px}.cd-dialog{padding:28px 18px}.cd-dialog h3{font-size:26px}.cd-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.cd-item figure{padding:10px}.cd-viewer{padding:56px 12px 20px}.cd-nav{top:auto;bottom:18px}.cd-value{padding:28px 22px}}
+@media (max-width:640px){.cd-wrap{padding:0 16px}.cd-sec{padding:64px 0}.cd-hero{padding:80px 0 64px}.cd-idaho{padding:28px 22px;gap:28px}.cd-videos{grid-template-columns:1fr}.cd-cats{gap:12px}.cd-cat span{padding:12px 12px 14px}.cd-cat b{font-size:16px}.cd-modal{padding:12px}.cd-dialog{padding:28px 18px}.cd-dialog h3{font-size:26px}.cd-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.cd-item figure{padding:10px}.cd-viewer{padding:56px 12px 20px}.cd-nav{top:auto;bottom:18px}.cd-value{padding:28px 22px}.cd-bar p{flex-direction:column;align-items:flex-start;gap:10px}.cd-bar strong{font-size:32px}}
 </style>
 
 <div id="fc-cd">
@@ -349,16 +352,14 @@ body.cd-lock{overflow:hidden}
           <li>15% off with annual prepayment</li>
           <li>On-demand hours cover your own requests, not the services listed in each option. Unused hours do not roll over.</li>
           <li>Additional hours billed at $125/hour</li>
-          <li>Not included: paid ad spend, printing, billboard placement, and third-party software beyond what is listed</li>
-          <li>Fresh Concept will sign a Business Associate Agreement (BAA) where patient data is involved</li>
-        </ul>
+          <li>Not included: paid ad spend, printing, billboard placement, and third-party software beyond what is listed</li>        </ul>
       </div>
       <div class="cd-value">
         <span class="cd-label">For context</span>
         <h3 style="color:#fff;font-size:28px">A full creative team, for less than a third of the payroll.</h3>
         <div class="cd-bars">
-          <div class="cd-bar"><p><span>In-house designer, videographer, social media manager and SEO specialist</span><b>$300,000+</b></p><div><i style="width:100%;background:rgba(255,255,255,.55)"></i></div></div>
-          <div class="cd-bar"><p><span>Creative Department, per year</span><b>$90,000</b></p><div><i style="width:30%"></i></div></div>
+          <div class="cd-bar"><span class="cd-bar-k">In-house</span><p><span><b>Four full-time hires</b>Designer, videographer, social media manager and SEO specialist</span><strong>$300,000+</strong></p><div><i style="width:100%;background:#fff"></i></div></div>
+          <div class="cd-bar cd-bar--fc"><span class="cd-bar-k">Fresh Concept</span><p><span><b>Creative Department package</b>Per year, at $7,500 a month</span><strong>$90,000</strong></p><div><i style="width:30%"></i></div></div>
         </div>
         <small>Salaries alone, before benefits, equipment and software.</small>
       </div>
