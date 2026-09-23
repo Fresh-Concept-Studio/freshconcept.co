@@ -12,7 +12,7 @@ Static site for [www.freshconcept.co](https://www.freshconcept.co), served by Gi
 ## Scripts
 
 - `tools/mirror.py` re-downloads the pages and assets from the live Webflow site. It only works while Webflow still serves the site.
-- `tools/build_pages.py` builds `404.html` and `utah-cancer/index.html` from the mirrored nav and footer. Re-run it after you edit the embed, then copy the embed's `images/` into `utah-cancer/images/`.
+- `tools/build_pages.py` builds `404.html` and `utah-cancer/index.html` from the mirrored nav and footer. Re-run it after you edit the embed or its images. It also regenerates the 800px gallery thumbnails in the embed's `images/thumbs/` and copies the embed's `images/` into `utah-cancer/images/`. It needs Pillow.
 
 ## Known gaps
 

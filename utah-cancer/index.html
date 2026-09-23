@@ -398,6 +398,7 @@ body.cd-lock{overflow:hidden}
 (function(){
   // Image location. Upload the images/ folder to your host and set BASE to that folder's URL,
   // or fill MAP with per-file URLs (e.g. Webflow asset links): {"rc-social-1.webp":"https://..."}.
+  // Cards and gallery tiles use the smaller copies in images/thumbs/; the full-screen viewer uses the originals.
   var BASE = "images/";
   var MAP = {};
   var BRAND = {rc:"Russell Center", br:"BioReach"};
@@ -419,13 +420,14 @@ body.cd-lock{overflow:hidden}
   var root = document.getElementById("fc-cd"); if (!root) return;
   var $ = function(s, el){ return (el || root).querySelector(s); };
   function src(f){ f += ".webp"; return MAP[f] || BASE + f; }
+  function thumb(f){ var t = "thumbs/" + f + ".webp"; return MAP[t] || (MAP[f + ".webp"] ? src(f) : BASE + t); }
   function items(k){ return G[k].i.split(";").map(function(x){ x = x.split("|"); return {f:x[0], c:x[1], b:BRAND[x[0].slice(0,2)]}; }); }
 
   root.querySelectorAll("[data-cards]").forEach(function(box){
     box.getAttribute("data-cards").split(" ").forEach(function(k){
       var g = G[k], it = items(k), b = document.createElement("button");
       b.className = "cd-cat"; b.setAttribute("data-g", k);
-      b.innerHTML = '<figure><img loading="lazy" alt="" src="' + src(it[0].f) + '"></figure><span><b>' + g.t + '</b><small>' + g.s + ' · ' + it.length + ' examples</small></span>';
+      b.innerHTML = '<figure><img loading="lazy" alt="" src="' + thumb(it[0].f) + '"></figure><span><b>' + g.t + '</b><small>' + g.s + ' · ' + it.length + ' examples</small></span>';
       box.appendChild(b);
     });
   });
@@ -439,7 +441,7 @@ body.cd-lock{overflow:hidden}
     cur = items(k); lastFocus = document.activeElement;
     $("#cd-mt").textContent = g.t; $("#cd-md").textContent = g.d;
     grid.innerHTML = cur.map(function(it, n){
-      return '<button class="cd-item" data-n="' + n + '"><figure><img loading="lazy" alt="' + it.c + '" src="' + src(it.f) + '"></figure><span><small>' + it.b + '</small>' + it.c + '</span></button>';
+      return '<button class="cd-item" data-n="' + n + '"><figure><img loading="lazy" alt="' + it.c + '" src="' + thumb(it.f) + '"></figure><span><small>' + it.b + '</small>' + it.c + '</span></button>';
     }).join("");
     modal.classList.add("cd-open"); modal.scrollTop = 0; lock(); $(".cd-x", modal).focus();
   }
