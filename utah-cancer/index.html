@@ -496,7 +496,11 @@ body.cd-lock{overflow:hidden}
     else if (t.classList.contains("cd-prev")) show(idx - 1);
     else if (t.classList.contains("cd-next")) show(idx + 1);
     else if (t.hasAttribute("data-yt")) {
+      // YouTube refuses embeds that arrive without a Referer (error 153), which is always the case
+      // for a page opened from disk or a preview. There, open the video on YouTube instead.
+      if (!/^https?:$/.test(location.protocol)) { window.open("https://www.youtube.com/watch?v=" + t.getAttribute("data-yt"), "_blank", "noopener"); return; }
       var f = document.createElement("iframe");
+      f.referrerPolicy = "strict-origin-when-cross-origin";
       f.src = "https://www.youtube-nocookie.com/embed/" + t.getAttribute("data-yt") + "?autoplay=1&rel=0";
       f.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen"; f.allowFullscreen = true;
       f.title = t.getAttribute("aria-label");
