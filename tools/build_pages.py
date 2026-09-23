@@ -17,7 +17,7 @@ nav_end = body.index('<div class="section-small')
 footer_start = body.index('<footer class="section-footer">')
 
 
-def page(title, description, content, path, keep_cta=True):
+def page(title, description, content, path, keep_cta=True, site_chrome=True):
     h = head
     h = re.sub(r"<title>.*?</title>", f"<title>{html.escape(title)}</title>", h)
     for attr in ('name="description"', 'property="og:description"', 'property="twitter:description"'):
@@ -27,7 +27,11 @@ def page(title, description, content, path, keep_cta=True):
     # Neither generated page should be indexed.
     h = h.replace("</title>", '</title><meta name="robots" content="noindex"/>', 1)
     cta = body[body.index('<div class="cta">'):footer_start] if keep_cta else ""
-    out = h + body[:nav_end] + content + cta + body[footer_start:]
+    if site_chrome:
+        out = h + body[:nav_end] + content + cta + body[footer_start:]
+    else:
+        # Standalone page: no nav, footer or Webflow scripts.
+        out = h + body[:body.index(">") + 1] + content + "</body></html>"
     dest = ROOT / path
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(out, encoding="utf-8")
@@ -44,4 +48,4 @@ page("Page not found | Fresh Concept",
 page("Creative Department | Fresh Concept × Utah Cancer Specialists",
      "Creative Department retainer options for Utah Cancer Specialists.",
      (EMBED / "creative-department.html").read_text(encoding="utf-8"),
-     "utah-cancer/index.html", keep_cta=False)
+     "utah-cancer/index.html", site_chrome=False)
