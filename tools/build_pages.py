@@ -43,9 +43,9 @@ footer_start = body.index('<footer class="section-footer">')
 def page(title, description, content, path, keep_cta=True, site_chrome=True):
     h = head
     h = re.sub(r"<title>.*?</title>", f"<title>{html.escape(title)}</title>", h)
-    for attr in ('name="description"', 'property="og:description"', 'property="twitter:description"'):
+    for attr in ('name="description"', 'property="og:description"', 'name="twitter:description"'):
         h = re.sub(r'<meta content="[^"]*" ' + attr, f'<meta content="{html.escape(description)}" ' + attr, h)
-    for attr in ('property="og:title"', 'property="twitter:title"'):
+    for attr in ('property="og:title"', 'name="twitter:title"'):
         h = re.sub(r'<meta content="[^"]*" ' + attr, f'<meta content="{html.escape(title)}" ' + attr, h)
     # Neither generated page should be indexed.
     h = h.replace("</title>", '</title><meta name="robots" content="noindex"/>', 1)
